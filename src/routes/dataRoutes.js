@@ -12,7 +12,6 @@ dataRoutes.post(
   dataManager,
   (req, res) => {
     const data = req.body.data;
-    console.log("DATA HERE ON DATA-ROUTE:", data);
     res.status(200).json({ data });
   }
 );
