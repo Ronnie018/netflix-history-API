@@ -6,5 +6,13 @@ this API source code was created to build a project i have in mind, which consis
 
 ### what does it do?
 
-it receives a .csv file from netflix user's page and returns all the data in a JSON file
+it receives a csv file from netflix user's page and returns all the data in a JSON file.
+
+### routes
+
+POST in /myData is the only action available in this API for now - remembering that you will need to send a formdata with the csv file
+
+### how to get this csv file?
+
+in this link you will find a tutorial, but it's not that difficult to find by yourself.
 
