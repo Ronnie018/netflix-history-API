@@ -14,4 +14,4 @@
 
 ## how to get this csv file?
 
-### in [this]([https://duckduckgo.com](https://www.engadget.com/2016-08-18-netflix-amazon-viewing-history-guide.html#:~:text=Visit%20Netflix.com%2C%20ensure%20you,ve%20streamed%20on%20your%20account.]) link you will find a tutorial, but it's not that difficult to find by yourself.
+### in [this]([https://www.engadget.com/2016-08-18-netflix-amazon-viewing-history-guide.html#:~:text=Visit%20Netflix.com%2C%20ensure%20you,ve%20streamed%20on%20your%20account.]) link you will find a tutorial, but it's not that difficult to find by yourself.
