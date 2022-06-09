@@ -37,6 +37,8 @@ app.use(async (req, res, next) => {
       else finalData.movies.push({ Title, Date });
     });
 
+    console.log(finalData.series);
+
     req.body.data = finalData;
   } catch (e) {
     res.json({ errors: [e.message] });
