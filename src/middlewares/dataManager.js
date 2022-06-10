@@ -22,22 +22,29 @@ app.use(async (req, res, next) => {
       `${fileName}.csv`
     )}`;
 
-    const source = await jsonParser().fromFile(dataPath);
+    const source = await jsonParser({
+      headers: ['Title', 'Date'],
+      alwaysSplitAtEOL: true,
+    }).fromFile(dataPath);
 
     const jsonVerifier = new JsonVerifier(source);
 
     if (jsonVerifier.errors.length > 0)
       throw new Error("received data is invalid");
 
+    console.log(source);
     // const finalData = {
     //   series: [],
     //   movies: [],
     // };
 
-    const finalData = (async () => {
-      const data = await new DataExtractor(source)
-      return data.final
-    })
+    async function getExtractData() {
+      console.log("running");
+      const data = await new DataExtractor(source);
+      return data.final;
+    }
+
+    const finalData = await getExtractData();
 
     req.body.data = finalData;
   } catch (e) {

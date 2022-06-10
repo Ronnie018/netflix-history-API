@@ -5,7 +5,7 @@ module.exports = {
       firstTime: "",
       genre: "",
       genreCode: "",
-      eps: ["", ""],
+      eps: [{title: '', date: ''}],
       rating: 0.0,
       watchedTimes: 0,
     },
