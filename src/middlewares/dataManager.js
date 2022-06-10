@@ -12,13 +12,15 @@ const DataExtractor = require("../services/DataExtractor.js");
 
 app.use(async (req, res, next) => {
   try {
+    console.log('testeeeeeeeeeeeeeeeeeeeeeeeeee');
+    const fileName = req.body.fileName;
     const dataPath = `${path.resolve(
       __dirname,
       "..",
       "..",
       "tmp",
       "uploads",
-      "data.csv"
+      `${fileName}.csv`
     )}`;
 
     const source = await jsonParser().fromFile(dataPath);
@@ -36,16 +38,8 @@ app.use(async (req, res, next) => {
     Object.values(source).forEach(async (value) => {
       const [Title, Date] = Object.values(value);
       if (Title.match(/(.+:\s.+)+/)) {
-        const extractedData = DataExtractor.extract(
-          { Title, Date },
-          { isSerie: true }
-        );
         finalData.series.push({ Title, Date });
       } else {
-        const extractedData = DataExtractor.extract(
-          { Title, Date },
-          { isFilm: true }
-        );
         finalData.movies.push({ Title, Date });
       }
     });

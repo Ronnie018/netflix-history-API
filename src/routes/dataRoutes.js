@@ -6,9 +6,12 @@ const dataRoutes = require("express").Router();
 
 const dataManager = require("../middlewares/dataManager");
 
+const hashGen = require('../services/hashGen')
+
 dataRoutes.post(
   "/generate",
-  multer(multerConfig).single("myData"),
+  
+  multer(multerConfig(hashGen())).single("myData"),
   dataManager,
   (req, res) => {
     const data = req.body.data;

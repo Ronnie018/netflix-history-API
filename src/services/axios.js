@@ -1,5 +1,5 @@
 const axios = require("axios");
 
-const Axios = axios({
-  baseURL: "https://api.themoviedb.org/3"
-})
+module.exports = axios.create({
+  baseURL: "https://api.themoviedb.org/3",
+});
