@@ -8,6 +8,8 @@ const jsonParser = require("csvtojson");
 
 const JsonVerifier = require("../services/JsonVerifier.js");
 
+const DataExtractor = require("../services/DataExtractor.js");
+
 app.use(async (req, res, next) => {
   try {
     const dataPath = `${path.resolve(
@@ -31,13 +33,22 @@ app.use(async (req, res, next) => {
       movies: [],
     };
 
-    Object.values(source).forEach((value) => {
+    Object.values(source).forEach(async (value) => {
       const [Title, Date] = Object.values(value);
-      if (Title.match(/(.+:\s.+)+/)) finalData.series.push({ Title, Date });
-      else finalData.movies.push({ Title, Date });
+      if (Title.match(/(.+:\s.+)+/)) {
+        const extractedData = DataExtractor.extract(
+          { Title, Date },
+          { isSerie: true }
+        );
+        finalData.series.push({ Title, Date });
+      } else {
+        const extractedData = DataExtractor.extract(
+          { Title, Date },
+          { isFilm: true }
+        );
+        finalData.movies.push({ Title, Date });
+      }
     });
-
-    console.log(finalData.series);
 
     req.body.data = finalData;
   } catch (e) {

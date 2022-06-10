@@ -7,7 +7,7 @@ const dataRoutes = require("express").Router();
 const dataManager = require("../middlewares/dataManager");
 
 dataRoutes.post(
-  "/myData",
+  "/generate",
   multer(multerConfig).single("myData"),
   dataManager,
   (req, res) => {
