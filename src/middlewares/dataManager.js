@@ -23,7 +23,7 @@ app.use(async (req, res, next) => {
     )}`;
 
     const source = await jsonParser({
-      headers: ['Title', 'Date'],
+      headers: ["Title", "Date"],
       alwaysSplitAtEOL: true,
     }).fromFile(dataPath);
 
@@ -31,12 +31,6 @@ app.use(async (req, res, next) => {
 
     if (jsonVerifier.errors.length > 0)
       throw new Error("received data is invalid");
-
-    console.log(source);
-    // const finalData = {
-    //   series: [],
-    //   movies: [],
-    // };
 
     async function getExtractData() {
       console.log("running");

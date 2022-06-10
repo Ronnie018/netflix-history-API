@@ -3,11 +3,11 @@ const axios = require("./axios");
 class DataExtractor {
   constructor(data) {
     this.data = data;
-    this.init();
     this.final = {
-      series: [],
-      movies: [],
+      series: null,
+      movies: null,
     };
+    this.init();
   }
 
   init() {
@@ -18,15 +18,47 @@ class DataExtractor {
     const finalObj = {};
   }
 
-  extractEps() {
-    console.log("extracting 1st");
-    // Object.values(this.data).forEach((elm) => {
-    //   if (Title.match(/(.+:.+:)/)) {
-    //     console.log("serie  ", Title);
-    //   } else {
-    //     console.log("movie  ", Title);
-    //   }
-    // });
+  async extractEps() {
+    const series = [];
+    await Object.values(this.data).forEach(({ Title, Date }) => {
+      if (Title.match(/(.+:.+:)/)) {
+        const instance = {
+          Title: Title.split(':')[0],
+          Eps: [{ title: Title, date: Date }],
+          Times: 1
+
+        };
+
+        const presentTitles = series.map(({ Title }) => {
+          return Title;
+        });
+
+        if (presentTitles.indexOf(instance.Title) === -1) {
+          series.push(instance);
+        } else {
+          const alreadyIn = presentTitles.indexOf(instance.Title);
+          series[alreadyIn].Times++
+          series[alreadyIn].Eps.push({ title: instance.Eps[0].title, date: instance.Eps[0].date })
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        this.final.series = series;
+      } else {
+        console.log("movie  ", Title);
+      }
+    });
   }
 }
 
