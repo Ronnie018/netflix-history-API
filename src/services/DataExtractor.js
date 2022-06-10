@@ -1,7 +1,17 @@
 const axios = require("./axios");
 
 class DataExtractor {
-  constructor() {}
+  constructor(data) {
+    this.init();
+    this.data = data;
+    this.final = {
+      
+    }
+  }
+
+  init() {
+    
+  }
 }
 
 module.exports = DataExtractor;

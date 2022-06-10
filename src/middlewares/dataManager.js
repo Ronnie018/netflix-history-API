@@ -29,22 +29,17 @@ app.use(async (req, res, next) => {
     if (jsonVerifier.errors.length > 0)
       throw new Error("received data is invalid");
 
-    const finalData = {
-      series: [],
-      movies: [],
-    };
+    // const finalData = {
+    //   series: [],
+    //   movies: [],
+    // };
 
-    Object.values(source).forEach(async (value) => {
-      const [Title, Date] = Object.values(value);
-      if (Title.match(/(.+:\s.+)+/)) {
-        finalData.series.push({ Title, Date });
-      } else {
-        finalData.movies.push({ Title, Date });
-      }
-    });
+    const finalData = (async () => {
+      const data = await new DataExtractor(source)
+      return data.final
+    })
 
     req.body.data = finalData;
-    console.log("last computed middleware");
   } catch (e) {
     res.json({ errors: [e.message] });
   }
