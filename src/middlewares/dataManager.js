@@ -12,7 +12,6 @@ const DataExtractor = require("../services/DataExtractor.js");
 
 app.use(async (req, res, next) => {
   try {
-    console.log("testeeeeeeeeeeeeeeeeeeeeeeeeee");
     const fileName = req.body.fileName;
     const dataPath = `${path.resolve(
       __dirname,

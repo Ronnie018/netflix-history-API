@@ -19,7 +19,6 @@ module.exports = function multerConfig(hashGen) {
     fileFilter: (req, file, cb) => {
       console.log(file);
       req.body.fileName = hashGen;
-      console.log(req.body.fileName);
       const allowedMimes = ["text/csv", "application/vnd.ms-excel"];
 
       if (allowedMimes.includes(file.mimetype)) cb(null, true);
