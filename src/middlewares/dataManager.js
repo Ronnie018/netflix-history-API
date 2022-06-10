@@ -44,6 +44,7 @@ app.use(async (req, res, next) => {
     });
 
     req.body.data = finalData;
+    console.log("last computed middleware");
   } catch (e) {
     res.json({ errors: [e.message] });
   }
