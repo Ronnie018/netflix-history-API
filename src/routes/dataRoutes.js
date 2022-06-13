@@ -8,8 +8,6 @@ const dataManager = require("../middlewares/dataManager");
 
 const hashGen = require("../services/hashGen");
 
-const path = require("path");
-
 const deleteFile = require("../services/deleteFile.js");
 
 dataRoutes.post(

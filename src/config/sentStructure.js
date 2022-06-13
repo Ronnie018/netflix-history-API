@@ -1,13 +1,13 @@
 module.exports = {
   series: [
     {
-      title: "",
-      firstTime: "",
-      genre: "",
-      genreCode: "",
-      eps: [{title: '', date: ''}],
-      rating: 0.0,
-      watchedTimes: 0,
+      title: "", // done
+      firstTime: "", // done
+      genre: "", // done
+      genreCode: "", // done
+      eps: [{title: '', date: ''}], // done
+      rating: 0.0, //
+      watchedTimes: 0, // done
     },
   ],
   movies: [{ title: "", date: "", genre: "", genreCode: "", rating: 0.0 }],
