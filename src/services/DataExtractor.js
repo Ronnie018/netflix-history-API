@@ -12,7 +12,6 @@ class DataExtractor {
     this.final = {
       series: null,
     };
-    this.init();
   }
 
   async init() {
@@ -112,7 +111,7 @@ class DataExtractor {
             date: instance.Eps[0].date,
           });
         }
-      } 
+      }
     });
 
     series.forEach(async (serie) => {
@@ -126,27 +125,32 @@ class DataExtractor {
         const { data } = await axios.get(query);
 
         if (data.total_results === 0) {
+          console.log("no res");
           serie.hasData = false;
           serie.hasExactData = false;
         } else {
+          console.log("have res");
           serie.hasData = true;
+          const res = data.results[0];
+          serie.genreIds = res.genre_ids.length > 0 ? res.genre_ids : [];
+          serie.originalName = res.name;
+          serie.rating = res.vote_average;
+          serie.images = [res.backdrop_path, res.poster_path];
+          serie.genre = this.getGenre(serie.genreIds);
           if (
             serie.Title.toLowerCase() === data.results[0].name.toLowerCase()
           ) {
-            const res = data.results[0];
-            serie.genreIds = res.genre_ids.length > 0 ? res.genre_ids : [];
             serie.hasExactData = true;
-            serie.originalName = res.name;
-            serie.rating = res.vote_average;
-            serie.images = [res.backdrop_path, res.poster_path];
-            serie.genre = this.getGenre(serie.genreIds);
           }
         }
       } catch (e) {
         console.log("series final error --->>>", e.message);
       }
     });
-    this.final.series = series;
+    setTimeout(() => {
+      this.final.series = series;
+      console.log("dado end");
+    }, 10000);
   }
 }
 
